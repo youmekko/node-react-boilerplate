@@ -25,7 +25,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     const user = new User(req.body)
     user.save((err, userInfo) => {
         if(err) return res.json({success: false, err})
@@ -35,7 +35,7 @@ app.post('/register', (req, res) => {
     })
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
     User.findOne({email: req.body.email}, (err, user) => {
 
         if(!user) {
@@ -65,5 +65,8 @@ app.post('/login', (req, res) => {
         })
     })
 })
+
+
+app.post('/api/users/')
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
