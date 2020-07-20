@@ -26,7 +26,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.post('/api/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     const user = new User(req.body)
     user.save((err, userInfo) => {
         if(err) return res.json({success: false, err})
@@ -36,7 +36,7 @@ app.post('/api/register', (req, res) => {
     })
 })
 
-app.post('/api/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
     User.findOne({email: req.body.email}, (err, user) => {
 
         if(!user) {
@@ -90,6 +90,10 @@ app.get('/api/users/logout', auth, (res, req) => {
                 success: true
             })
         })
+})
+
+app.get('/api/hello', (req, res) => {
+    res.send('안녕하세요')
 })
 
 
