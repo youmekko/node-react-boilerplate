@@ -6,9 +6,9 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const { User } = require('./models/User')
+const { auth } = require('./middleware/auth')
 
 const config = require('./config/key')
-const { auth } = require('./middleware/auth')
 
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))
@@ -26,7 +26,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.post('/api/users/register', (req, res) => {
+app.post('/api/register', (req, res) => {
     const user = new User(req.body)
     user.save((err, userInfo) => {
         if(err) return res.json({success: false, err})
@@ -36,7 +36,7 @@ app.post('/api/users/register', (req, res) => {
     })
 })
 
-app.post('/api/users/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     User.findOne({email: req.body.email}, (err, user) => {
 
         if(!user) {
@@ -74,10 +74,11 @@ app.get('/api/users/auth', auth, (req, res) => {
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
-        lastname: req.user.lastname,
+        lastName: req.user.lastName,
         role: req.user.role,
         image: req.user.image
     })
 })
+
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
