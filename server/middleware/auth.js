@@ -17,4 +17,4 @@ let auth = (req, res, next) => {
     })
 }
 
-module.export = { auth }
+module.exports = { auth }
