@@ -11,7 +11,6 @@ import LoginPage from './components/views/LoginPage/LoginPage'
 import RegisterPage from './components/views/RegisterPage/RegisterPage'
 
 
-
 function App() {
   return (
     <Router>
