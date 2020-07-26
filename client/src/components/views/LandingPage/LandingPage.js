@@ -3,10 +3,10 @@ import axios from 'axios'
 
 function LandingPage(props) {
 
-    onLogoutHandler = () => {
+    const onLogoutHandler = () => {
         axios.get('/api/users/logout')
             .then(res => {
-                if (res.data.scuccess) {
+                if (res.data.success) {
                     props.history.push('/login')
                 } else {
                     alert('로그아웃에 실패 했습니다.')
