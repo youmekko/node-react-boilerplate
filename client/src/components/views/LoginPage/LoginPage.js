@@ -29,7 +29,7 @@ function LoginPage(props) {
                 if (res.payload.loginSuccess) {
                     props.history.push('/')
                 } else {
-                    alert('Error')
+                    alert('로그인에 실패 했습니다.')
                 }
             })
 

@@ -46,7 +46,7 @@ function RegisterPage(props) {
                 if (res.payload.success) {
                     props.history.push('/login')
                 } else {
-                    alert('Failed to sign up!')
+                    alert('회원 가입에 실패 했습니다.')
                 }
             })
 
